@@ -10,8 +10,10 @@ onMounted(() => {
   socket.onopen = () => {
     console.log("Connected to server");
   };
+
   socket.onmessage = (e) => {
     const data = JSON.parse(e.data);
+
     if (data.action === "newResult") {
       console.log(data);
     }
@@ -57,7 +59,7 @@ const sendNewStats = () => {
         <input
           type="radio"
           v-model="result"
-          value="Win"
+          value="win"
           name="result"
           required
         />
@@ -65,7 +67,7 @@ const sendNewStats = () => {
         <input
           type="radio"
           v-model="result"
-          value="Loss"
+          value="loss"
           name="result"
           required
         />
