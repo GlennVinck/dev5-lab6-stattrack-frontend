@@ -1,4 +1,38 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted } from "vue";
+
+const team = ref("");
+const result = ref("");
+const socket = new WebSocket("ws://localhost:3000/primus");
+
+onMounted(() => {
+  // WebSocket setup
+  socket.onopen = () => {
+    console.log("Connected to server");
+  };
+  socket.onmessage = (e) => {
+    const data = JSON.parse(e.data);
+    if (data.action === "newResult") {
+      console.log(data);
+    }
+  };
+
+  socket.onclose = () => {
+    console.log("Connection closed");
+  };
+});
+
+const sendNewStats = () => {
+  // send team value and result value to the server
+  socket.send(
+    JSON.stringify({
+      action: "newResult",
+      team: team.value,
+      result: result.value,
+    })
+  );
+};
+</script>
 
 <template>
   <div id="main-container">
@@ -7,7 +41,7 @@
     <div id="input-container">
       <div id="teams-selector">
         <label for="team">Team</label>
-        <select id="teams" name="teams">
+        <select v-model="team" name="teams">
           <option value="Astralis">Astralis</option>
           <option value="FaZe Clan">FaZe Clan</option>
           <option value="Ninjas In Pyjamas">Ninjas In Pyjamas</option>
@@ -20,9 +54,21 @@
       </div>
       <div id="result-selector">
         <label for="result">Result</label>
-        <input type="radio" name="result" id="win" value="Win" required />
+        <input
+          type="radio"
+          v-model="result"
+          value="Win"
+          name="result"
+          required
+        />
         <label for="win">Win</label>
-        <input type="radio" name="result" id="loss" value="Loss" required />
+        <input
+          type="radio"
+          v-model="result"
+          value="Loss"
+          name="result"
+          required
+        />
         <label for="loss">Loss</label>
       </div>
     </div>
@@ -59,7 +105,7 @@
   align-items: center;
 }
 
-#teams {
+select {
   padding: 6px 36px 6px 12px;
   border-radius: 6px;
   border: 1px solid #bfbfcb;
@@ -73,7 +119,7 @@
   background-size: 1em auto, 100%;
 }
 
-#teams:focus {
+select:focus {
   outline: none;
 }
 
