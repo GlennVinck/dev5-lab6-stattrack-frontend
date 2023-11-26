@@ -35,7 +35,7 @@
 #input-container {
   background-color: #1a1a20;
   padding: 16px;
-  margin: 16px 0;
+  margin: 32px 0 16px 0;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
