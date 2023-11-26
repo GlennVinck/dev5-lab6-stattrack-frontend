@@ -1,6 +1,9 @@
+<script setup>
+import Stats from "../components/Stats.vue";
+</script>
+
 <template>
   <div>
-    <h1>New Stats</h1>
-    <p>New Stats page content</p>
+    <Stats />
   </div>
 </template>
