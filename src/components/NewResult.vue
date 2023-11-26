@@ -15,7 +15,7 @@
           <option value="Virtus.pro">Virtus.pro</option>
           <option value="G2 Esports">G2 Esports</option>
           <option value="Cloud9">Cloud9</option>
-          <option value="Complexity Gaming">Complexity Gaming</option>
+          <option value="Complexity Gaming">Fnatic</option>
         </select>
       </div>
       <div id="result-selector">
@@ -35,7 +35,7 @@
 #input-container {
   background-color: #1a1a20;
   padding: 16px;
-  margin: 32px 0 16px 0;
+  margin: 32px 0;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
