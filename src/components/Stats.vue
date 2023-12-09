@@ -97,7 +97,7 @@ onMounted(() => {
       if (data.data.result === "win") {
         team.wins++;
         team.prizeMoney += 10000;
-        team.seasonPoints += 10;
+        team.seasonPoints += 3;
       } else {
         team.losses++;
       }
