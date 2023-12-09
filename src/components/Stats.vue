@@ -2,14 +2,13 @@
 import { ref, onMounted } from "vue";
 
 const socket = new WebSocket("ws://localhost:3000/primus");
-
 const teams = ref([
   {
     name: "Astralis",
     wins: 12,
     losses: 3,
     matchesPlayed: 15,
-    prizeMoney: "$1,000,000",
+    prizeMoney: 1000000,
     seasonPoints: 100,
   },
   {
@@ -17,7 +16,7 @@ const teams = ref([
     wins: 10,
     losses: 5,
     matchesPlayed: 15,
-    prizeMoney: "$800,000",
+    prizeMoney: 800000,
     seasonPoints: 80,
   },
   {
@@ -25,7 +24,7 @@ const teams = ref([
     wins: 8,
     losses: 7,
     matchesPlayed: 15,
-    prizeMoney: "$600,000",
+    prizeMoney: 600000,
     seasonPoints: 60,
   },
   {
@@ -33,7 +32,7 @@ const teams = ref([
     wins: 6,
     losses: 9,
     matchesPlayed: 15,
-    prizeMoney: "$400,000",
+    prizeMoney: 400000,
     seasonPoints: 40,
   },
   {
@@ -41,7 +40,7 @@ const teams = ref([
     wins: 4,
     losses: 11,
     matchesPlayed: 15,
-    prizeMoney: "$200,000",
+    prizeMoney: 200000,
     seasonPoints: 20,
   },
   {
@@ -49,7 +48,7 @@ const teams = ref([
     wins: 2,
     losses: 13,
     matchesPlayed: 15,
-    prizeMoney: "$100,000",
+    prizeMoney: 100000,
     seasonPoints: 10,
   },
   {
@@ -57,7 +56,7 @@ const teams = ref([
     wins: 0,
     losses: 15,
     matchesPlayed: 15,
-    prizeMoney: "$0",
+    prizeMoney: 0,
     seasonPoints: 0,
   },
   {
@@ -65,10 +64,31 @@ const teams = ref([
     wins: 0,
     losses: 15,
     matchesPlayed: 15,
-    prizeMoney: "$0",
+    prizeMoney: 0,
     seasonPoints: 0,
   },
 ]);
+
+onMounted(() => {
+  socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+
+    if (data.action === "newResult") {
+      console.log("data received");
+
+      const team = teams.value.find((team) => team.name === data.data.team);
+      console.log(team);
+      if (data.data.result === "win") {
+        team.wins++;
+        team.prizeMoney += 10000;
+        team.seasonPoints += 10;
+      } else {
+        team.losses++;
+      }
+      team.matchesPlayed++;
+    }
+  };
+});
 </script>
 
 <template>
@@ -101,7 +121,7 @@ const teams = ref([
             <td>{{ team.wins }}</td>
             <td>{{ team.losses }}</td>
             <td>{{ team.matchesPlayed }}</td>
-            <td>{{ team.prizeMoney }}</td>
+            <td>${{ team.prizeMoney }}</td>
             <td>{{ team.seasonPoints }}</td>
           </tr>
         </tbody>

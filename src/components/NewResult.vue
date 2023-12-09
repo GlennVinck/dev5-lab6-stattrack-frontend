@@ -51,7 +51,7 @@ const sendNewStats = () => {
           <option value="Virtus.pro">Virtus.pro</option>
           <option value="G2 Esports">G2 Esports</option>
           <option value="Cloud9">Cloud9</option>
-          <option value="Complexity Gaming">Fnatic</option>
+          <option value="Fnatic">Fnatic</option>
         </select>
       </div>
       <div id="result-selector">
