@@ -4,6 +4,7 @@ import { ref, onMounted } from "vue";
 const team = ref("");
 const result = ref("");
 const socket = new WebSocket("ws://localhost:3000/primus");
+let errorMessage = ref("");
 
 onMounted(() => {
   // WebSocket setup
@@ -25,6 +26,15 @@ onMounted(() => {
 });
 
 const sendNewStats = () => {
+  // Check if both team and result are selected
+  if (!team.value || !result.value) {
+    errorMessage.value = "Please select both team and result.";
+    return;
+  }
+
+  // Clear previous error messages
+  errorMessage.value = "";
+
   // send team value and result value to the server
   socket.send(
     JSON.stringify({
@@ -76,6 +86,7 @@ const sendNewStats = () => {
     </div>
 
     <button @click="sendNewStats">Send</button>
+    <p v-if="errorMessage" style="color: red">{{ errorMessage }}</p>
   </div>
 </template>
 
