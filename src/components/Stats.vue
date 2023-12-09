@@ -1,4 +1,75 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted } from "vue";
+
+const socket = new WebSocket("ws://localhost:3000/primus");
+
+const teams = ref([
+  {
+    name: "Astralis",
+    wins: 12,
+    losses: 3,
+    matchesPlayed: 15,
+    prizeMoney: "$1,000,000",
+    seasonPoints: 100,
+  },
+  {
+    name: "FaZe Clan",
+    wins: 10,
+    losses: 5,
+    matchesPlayed: 15,
+    prizeMoney: "$800,000",
+    seasonPoints: 80,
+  },
+  {
+    name: "Ninjas In Pyjamas",
+    wins: 8,
+    losses: 7,
+    matchesPlayed: 15,
+    prizeMoney: "$600,000",
+    seasonPoints: 60,
+  },
+  {
+    name: "Team Liquid",
+    wins: 6,
+    losses: 9,
+    matchesPlayed: 15,
+    prizeMoney: "$400,000",
+    seasonPoints: 40,
+  },
+  {
+    name: "Virtus.pro",
+    wins: 4,
+    losses: 11,
+    matchesPlayed: 15,
+    prizeMoney: "$200,000",
+    seasonPoints: 20,
+  },
+  {
+    name: "G2 Esports",
+    wins: 2,
+    losses: 13,
+    matchesPlayed: 15,
+    prizeMoney: "$100,000",
+    seasonPoints: 10,
+  },
+  {
+    name: "Cloud9",
+    wins: 0,
+    losses: 15,
+    matchesPlayed: 15,
+    prizeMoney: "$0",
+    seasonPoints: 0,
+  },
+  {
+    name: "Fnatic",
+    wins: 0,
+    losses: 15,
+    matchesPlayed: 15,
+    prizeMoney: "$0",
+    seasonPoints: 0,
+  },
+]);
+</script>
 
 <template>
   <div id="main-container">
@@ -17,109 +88,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr v-for="team in teams" :key="team.name">
             <td>
               <div>
-                <img src="../assets/astralis.png" alt="Logo" />
+                <img
+                  :src="'../assets/' + team.name.toLowerCase() + '.png'"
+                  alt="Logo"
+                />
               </div>
-              Astralis
+              {{ team.name }}
             </td>
-            <td>12</td>
-            <td>3</td>
-            <td>15</td>
-            <td>$1,000,000</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>
-              <div>
-                <img src="../assets/faze.png" alt="Logo" />
-              </div>
-              FaZe Clan
-            </td>
-            <td>10</td>
-            <td>5</td>
-            <td>15</td>
-            <td>$800,000</td>
-            <td>80</td>
-          </tr>
-          <tr>
-            <td>
-              <div>
-                <img src="../assets/nip.png" alt="Logo" />
-              </div>
-              Ninjas In Pyjamas
-            </td>
-            <td>8</td>
-            <td>7</td>
-            <td>15</td>
-            <td>$600,000</td>
-            <td>60</td>
-          </tr>
-          <tr>
-            <td>
-              <div>
-                <img src="../assets/liquid.png" alt="Logo" />
-              </div>
-              Team Liquid
-            </td>
-            <td>6</td>
-            <td>9</td>
-            <td>15</td>
-            <td>$400,000</td>
-            <td>40</td>
-          </tr>
-          <tr>
-            <td>
-              <div>
-                <img src="../assets/virtuspro.png" alt="Logo" />
-              </div>
-              Virtus.pro
-            </td>
-            <td>4</td>
-            <td>11</td>
-            <td>15</td>
-            <td>$200,000</td>
-            <td>20</td>
-          </tr>
-          <tr>
-            <td>
-              <div>
-                <img src="../assets/g2.png" alt="Logo" />
-              </div>
-              G2 Esports
-            </td>
-            <td>2</td>
-            <td>13</td>
-            <td>15</td>
-            <td>$100,000</td>
-            <td>10</td>
-          </tr>
-          <tr>
-            <td>
-              <div>
-                <img src="../assets/cloud9.png" alt="Logo" />
-              </div>
-              Cloud9
-            </td>
-            <td>0</td>
-            <td>15</td>
-            <td>15</td>
-            <td>$0</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td>
-              <div>
-                <img src="../assets/fnatic.png" alt="Logo" />
-              </div>
-              Fnatic
-            </td>
-            <td>0</td>
-            <td>15</td>
-            <td>15</td>
-            <td>$0</td>
-            <td>0</td>
+            <td>{{ team.wins }}</td>
+            <td>{{ team.losses }}</td>
+            <td>{{ team.matchesPlayed }}</td>
+            <td>{{ team.prizeMoney }}</td>
+            <td>{{ team.seasonPoints }}</td>
           </tr>
         </tbody>
       </table>

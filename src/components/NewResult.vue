@@ -115,7 +115,7 @@ select {
   color: #ffffff;
   font-size: 16px;
   appearance: none;
-  background-image: url("../public/chevron-down.svg");
+  background-image: url("./chevron-down.svg");
   background-repeat: no-repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 1em auto, 100%;
