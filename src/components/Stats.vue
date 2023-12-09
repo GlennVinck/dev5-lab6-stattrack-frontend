@@ -121,7 +121,7 @@ onMounted(() => {
             <td>{{ team.wins }}</td>
             <td>{{ team.losses }}</td>
             <td>{{ team.matchesPlayed }}</td>
-            <td>${{ team.prizeMoney }}</td>
+            <td>${{ team.prizeMoney.toLocaleString() }}</td>
             <td>{{ team.seasonPoints }}</td>
           </tr>
         </tbody>
