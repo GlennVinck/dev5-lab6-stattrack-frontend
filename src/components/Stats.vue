@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
-const socket = new WebSocket("ws://localhost:3000/primus");
+const socket = new WebSocket("wss://stattrack-websocket.onrender.com/primus");
 const teams = ref([
   {
     name: "Astralis",

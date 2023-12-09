@@ -3,7 +3,7 @@ import { ref, onMounted } from "vue";
 
 const team = ref("");
 const result = ref("");
-const socket = new WebSocket("ws://localhost:3000/primus");
+const socket = new WebSocket("wss://stattrack-websocket.onrender.com/primus");
 let errorMessage = ref("");
 
 onMounted(() => {
