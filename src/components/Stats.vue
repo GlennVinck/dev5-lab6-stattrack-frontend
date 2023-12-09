@@ -69,6 +69,22 @@ const teams = ref([
   },
 ]);
 
+// array of teamnames
+// const teamNames = [
+//   "Astralis",
+//   "FaZe Clan",
+//   "Ninjas In Pyjamas",
+//   "Team Liquid",
+//   "Virtus.pro",
+//   "G2 Esports",
+//   "Cloud9",
+//   "Fnatic",
+// ];
+
+// const teamsLowercase = teamNames.map((team) => team.toLowerCase());
+
+// console.log(teamsLowercase);
+
 onMounted(() => {
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
@@ -112,7 +128,7 @@ onMounted(() => {
             <td>
               <div>
                 <img
-                  :src="'../assets/' + team.name.toLowerCase() + '.png'"
+                  :src="'./src/assets/' + team.name.toLowerCase() + '.png'"
                   alt="Logo"
                 />
               </div>
