@@ -135,7 +135,7 @@ onMounted(() => {
           <tr v-for="team in teams" :key="team.name">
             <td>
               <div>
-                <img :src="'./src/assets/' + team.logo" alt="Logo" />
+                <img :src="'./' + team.logo" alt="Logo" />
               </div>
               {{ team.name }}
             </td>
