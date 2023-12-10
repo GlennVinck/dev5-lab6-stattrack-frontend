@@ -10,6 +10,7 @@ const teams = ref([
     matchesPlayed: 15,
     prizeMoney: 120000,
     seasonPoints: 36,
+    logo: "astralis.png",
   },
   {
     name: "FaZe Clan",
@@ -18,6 +19,7 @@ const teams = ref([
     matchesPlayed: 15,
     prizeMoney: 100000,
     seasonPoints: 30,
+    logo: "fazeclan.png",
   },
   {
     name: "Ninjas In Pyjamas",
@@ -26,6 +28,7 @@ const teams = ref([
     matchesPlayed: 15,
     prizeMoney: 80000,
     seasonPoints: 24,
+    logo: "nip.png",
   },
   {
     name: "Team Liquid",
@@ -34,6 +37,7 @@ const teams = ref([
     matchesPlayed: 15,
     prizeMoney: 60000,
     seasonPoints: 18,
+    logo: "teamliquid.png",
   },
   {
     name: "Virtus.pro",
@@ -42,6 +46,7 @@ const teams = ref([
     matchesPlayed: 15,
     prizeMoney: 40000,
     seasonPoints: 12,
+    logo: "virtuspro.png",
   },
   {
     name: "G2 Esports",
@@ -50,6 +55,7 @@ const teams = ref([
     matchesPlayed: 15,
     prizeMoney: 20000,
     seasonPoints: 6,
+    logo: "g2esports.png",
   },
   {
     name: "Cloud9",
@@ -58,6 +64,7 @@ const teams = ref([
     matchesPlayed: 15,
     prizeMoney: 0,
     seasonPoints: 0,
+    logo: "cloud9.png",
   },
   {
     name: "Fnatic",
@@ -66,6 +73,7 @@ const teams = ref([
     matchesPlayed: 15,
     prizeMoney: 0,
     seasonPoints: 0,
+    logo: "fnatic.png",
   },
 ]);
 
@@ -127,10 +135,7 @@ onMounted(() => {
           <tr v-for="team in teams" :key="team.name">
             <td>
               <div>
-                <img
-                  :src="'./src/assets/' + team.name.toLowerCase() + '.png'"
-                  alt="Logo"
-                />
+                <img :src="'./src/assets/' + team.logo" alt="Logo" />
               </div>
               {{ team.name }}
             </td>
